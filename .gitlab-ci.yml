@@ -1,0 +1,33 @@
+image: python:3.13-slim
+
+stages:
+  - lint
+  - test
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - .cache/pip
+
+before_script:
+  - pip install --no-cache-dir uv==0.9.17
+  - uv sync --frozen --dev
+
+lint:
+  stage: lint
+  script:
+    - uv run --frozen ruff check .
+
+test:
+  stage: test
+  script:
+    - uv run --frozen pytest --junitxml=reports/junit.xml
+  artifacts:
+    when: always
+    reports:
+      junit: reports/junit.xml
+    paths:
+      - reports/junit.xml

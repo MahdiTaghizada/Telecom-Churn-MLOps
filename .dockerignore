@@ -1,0 +1,16 @@
+.git
+.gitignore
+.env
+.venv
+__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+data
+mlflow
+reports
+tests
+docs
+TELECOM_CHURN_MLOPS_PROJECT_BRIEF.md
+*.sqlite
+*.db
