@@ -43,5 +43,9 @@ target-version = "py313"
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 
+[tool.ruff.lint.isort]
+known-first-party = ["telecom_churn"]
+known-third-party = ["mlflow"]
+
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["B011"]

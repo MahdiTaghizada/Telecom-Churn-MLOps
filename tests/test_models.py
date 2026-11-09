@@ -1,8 +1,8 @@
 from pathlib import Path
 
+import mlflow
 import pandas as pd
 
-import mlflow
 from telecom_churn.evaluation import evaluate_model
 from telecom_churn.models import build_models
 from telecom_churn.preprocessing import prepare_features, prepare_target

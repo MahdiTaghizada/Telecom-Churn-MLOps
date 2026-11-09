@@ -174,7 +174,7 @@ quality. New labeled data requires a separate evaluation.
 | Prometheus `/metrics` MVP | Complete |
 | Control and SYNTHETIC drift HTML/JSON | Complete |
 | Docker verification in this environment | Verified locally (build, run, /health, /predict, /metrics) |
-| GitLab pipeline result | Pending push to GitLab |
+| GitLab pipeline result | Pending, first successful GitLab pipeline run not yet verified |
 | Grafana dashboard, cloud deployment, auto-retraining | Future work |
 
 ## Tests and screenshots

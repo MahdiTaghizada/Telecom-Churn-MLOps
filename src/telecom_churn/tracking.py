@@ -7,11 +7,10 @@ import shutil
 from datetime import UTC, datetime
 from pathlib import Path
 
-import mlflow.sklearn
-from mlflow.models import infer_signature
-
 import mlflow
+import mlflow.sklearn
 from mlflow import MlflowClient
+from mlflow.models import infer_signature
 
 REGISTERED_MODEL_NAME = "telecom-churn-model"
 ALIAS = "champion"
