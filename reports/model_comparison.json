@@ -1,0 +1,152 @@
+{
+  "models": {
+    "logistic_regression": {
+      "validation": {
+        "accuracy": 0.7473385379701917,
+        "precision": 0.5157342657342657,
+        "recall": 0.7887700534759359,
+        "f1": 0.6236786469344608,
+        "roc_auc": 0.8361375907411712,
+        "confusion_matrix": [
+          [
+            758,
+            277
+          ],
+          [
+            79,
+            295
+          ]
+        ],
+        "classification_report": {
+          "0": {
+            "precision": 0.9056152927120669,
+            "recall": 0.7323671497584541,
+            "f1-score": 0.8098290598290598,
+            "support": 1035.0
+          },
+          "1": {
+            "precision": 0.5157342657342657,
+            "recall": 0.7887700534759359,
+            "f1-score": 0.6236786469344608,
+            "support": 374.0
+          },
+          "accuracy": 0.7473385379701917,
+          "macro avg": {
+            "precision": 0.7106747792231662,
+            "recall": 0.760568601617195,
+            "f1-score": 0.7167538533817603,
+            "support": 1409.0
+          },
+          "weighted avg": {
+            "precision": 0.8021266453808408,
+            "recall": 0.7473385379701917,
+            "f1-score": 0.7604179495220477,
+            "support": 1409.0
+          }
+        }
+      },
+      "best_params": {
+        "classifier__C": 0.5
+      },
+      "test": {
+        "accuracy": 0.7374024130589071,
+        "precision": 0.5034364261168385,
+        "recall": 0.7834224598930482,
+        "f1": 0.6129707112970711,
+        "roc_auc": 0.8415045596631274,
+        "confusion_matrix": [
+          [
+            746,
+            289
+          ],
+          [
+            81,
+            293
+          ]
+        ],
+        "classification_report": {
+          "0": {
+            "precision": 0.9020556227327691,
+            "recall": 0.7207729468599033,
+            "f1-score": 0.8012889366272825,
+            "support": 1035.0
+          },
+          "1": {
+            "precision": 0.5034364261168385,
+            "recall": 0.7834224598930482,
+            "f1-score": 0.6129707112970711,
+            "support": 374.0
+          },
+          "accuracy": 0.7374024130589071,
+          "macro avg": {
+            "precision": 0.7027460244248038,
+            "recall": 0.7520977033764757,
+            "f1-score": 0.7071298239621768,
+            "support": 1409.0
+          },
+          "weighted avg": {
+            "precision": 0.7962475464131396,
+            "recall": 0.7374024130589071,
+            "f1-score": 0.7513024098185537,
+            "support": 1409.0
+          }
+        }
+      }
+    },
+    "random_forest": {
+      "validation": {
+        "accuracy": 0.7877927608232789,
+        "precision": 0.596401028277635,
+        "recall": 0.6203208556149733,
+        "f1": 0.6081258191349934,
+        "roc_auc": 0.82786432095895,
+        "confusion_matrix": [
+          [
+            878,
+            157
+          ],
+          [
+            142,
+            232
+          ]
+        ],
+        "classification_report": {
+          "0": {
+            "precision": 0.8607843137254902,
+            "recall": 0.8483091787439614,
+            "f1-score": 0.8545012165450122,
+            "support": 1035.0
+          },
+          "1": {
+            "precision": 0.596401028277635,
+            "recall": 0.6203208556149733,
+            "f1-score": 0.6081258191349934,
+            "support": 374.0
+          },
+          "accuracy": 0.7877927608232789,
+          "macro avg": {
+            "precision": 0.7285926710015627,
+            "recall": 0.7343150171794673,
+            "f1-score": 0.7313135178400028,
+            "support": 1409.0
+          },
+          "weighted avg": {
+            "precision": 0.7906073451254209,
+            "recall": 0.7877927608232789,
+            "f1-score": 0.7891041983538505,
+            "support": 1409.0
+          }
+        }
+      },
+      "best_params": {
+        "classifier__max_depth": 12
+      }
+    }
+  },
+  "selected_model": "logistic_regression",
+  "registry": {
+    "name": "telecom-churn-model",
+    "version": "4",
+    "run_id": "6ed835a4f5d241359dba66277fef0e92"
+  }
+}

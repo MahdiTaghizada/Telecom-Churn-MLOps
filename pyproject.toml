@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "telecom-churn-mlops"
+version = "0.1.0"
+description = "Stage 1 reproducible telecom churn MLOps pipeline"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+  "joblib==1.5.3",
+  "matplotlib==3.10.8",
+  "mlflow==3.10.0",
+  "numpy==2.4.3",
+  "pandas==2.3.3",
+  "scikit-learn==1.8.0",
+]
+
+[dependency-groups]
+dev = [
+  "pytest==9.1.1",
+  "ruff==0.15.6",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/telecom_churn"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]
