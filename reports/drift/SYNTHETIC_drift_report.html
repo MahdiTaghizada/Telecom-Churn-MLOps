@@ -1,0 +1,36 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SYNTHETIC data drift report (synthetic)</title>
+<style>body{font-family:Arial,sans-serif;max-width:1100px;margin:2rem auto}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #ccc;padding:.4rem;text-align:left}
+.drift{font-weight:bold;color:#a00}</style></head><body>
+<h1>SYNTHETIC data drift report (synthetic)</h1>
+<p>Reference data is the feature-only training split. Current data is a sampled
+control distribution or an explicitly synthetic scenario; it is not live customer data.</p>
+<p>Overall drift: <span class="drift">
+Detected</span>.
+Reference rows: 4225; current rows: 4225;
+p-value threshold: 0.05.</p>
+<p>Numeric features use the two-sample Kolmogorov-Smirnov test. Categorical
+features use a chi-square test of count distributions. Data drift does not prove
+model quality degradation; labeled evaluation is required to assess that.</p>
+<table><thead><tr><th>Feature</th><th>Test</th><th>Statistic</th><th>p-value</th><th>Drift</th></tr></thead>
+<tbody><tr><td>SeniorCitizen</td><td>Kolmogorov-Smirnov</td><td>0.002604</td><td>1</td><td>No</td></tr>
+<tr><td>tenure</td><td>Kolmogorov-Smirnov</td><td>0.422722</td><td>0</td><td>Yes</td></tr>
+<tr><td>MonthlyCharges</td><td>Kolmogorov-Smirnov</td><td>0.565207</td><td>0</td><td>Yes</td></tr>
+<tr><td>TotalCharges</td><td>Kolmogorov-Smirnov</td><td>0.012565</td><td>0.893199</td><td>No</td></tr>
+<tr><td>gender</td><td>chi-square</td><td>0.320012</td><td>0.5716</td><td>No</td></tr>
+<tr><td>Partner</td><td>chi-square</td><td>0.758997</td><td>0.383643</td><td>No</td></tr>
+<tr><td>Dependents</td><td>chi-square</td><td>0.081783</td><td>0.774896</td><td>No</td></tr>
+<tr><td>PhoneService</td><td>chi-square</td><td>0.005194</td><td>0.942545</td><td>No</td></tr>
+<tr><td>MultipleLines</td><td>chi-square</td><td>0.210838</td><td>0.899948</td><td>No</td></tr>
+<tr><td>InternetService</td><td>chi-square</td><td>1.298311</td><td>0.522487</td><td>No</td></tr>
+<tr><td>OnlineSecurity</td><td>chi-square</td><td>2.809215</td><td>0.245463</td><td>No</td></tr>
+<tr><td>OnlineBackup</td><td>chi-square</td><td>1.190106</td><td>0.551533</td><td>No</td></tr>
+<tr><td>DeviceProtection</td><td>chi-square</td><td>1.195204</td><td>0.550129</td><td>No</td></tr>
+<tr><td>TechSupport</td><td>chi-square</td><td>1.790320</td><td>0.408542</td><td>No</td></tr>
+<tr><td>StreamingTV</td><td>chi-square</td><td>1.510239</td><td>0.469954</td><td>No</td></tr>
+<tr><td>StreamingMovies</td><td>chi-square</td><td>1.238238</td><td>0.538418</td><td>No</td></tr>
+<tr><td>Contract</td><td>chi-square</td><td>2449.480995</td><td>0</td><td>Yes</td></tr>
+<tr><td>PaperlessBilling</td><td>chi-square</td><td>0.004427</td><td>0.946953</td><td>No</td></tr>
+<tr><td>PaymentMethod</td><td>chi-square</td><td>4221.251109</td><td>0</td><td>Yes</td></tr></tbody></table></body></html>

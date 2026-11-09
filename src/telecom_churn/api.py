@@ -11,13 +11,37 @@ from typing import Annotated, Any
 import mlflow.sklearn
 import pandas as pd
 from fastapi import FastAPI, HTTPException, Request, status
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
+from prometheus_client import CONTENT_TYPE_LATEST, Counter, Histogram, generate_latest
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 
 from .preprocessing import FEATURES, prepare_features
 
 LOGGER = logging.getLogger(__name__)
 DEFAULT_BUNDLE_DIR = Path("models/champion")
+HTTP_REQUESTS = Counter(
+    "telecom_http_requests_total",
+    "Total HTTP requests.",
+    labelnames=("route", "status"),
+)
+HTTP_ERRORS = Counter(
+    "telecom_http_errors_total",
+    "Total HTTP responses with a 4xx or 5xx status.",
+    labelnames=("route", "status"),
+)
+HTTP_REQUEST_DURATION = Histogram(
+    "telecom_http_request_duration_seconds",
+    "HTTP request duration in seconds.",
+    labelnames=("route",),
+)
+PREDICTION_REQUESTS = Counter(
+    "telecom_prediction_requests_total",
+    "Total prediction requests.",
+)
+INFERENCE_DURATION = Histogram(
+    "telecom_inference_duration_seconds",
+    "Model inference duration in seconds.",
+)
 
 
 class CustomerFeatures(BaseModel):
@@ -113,6 +137,21 @@ def create_app(bundle_dir: Path = DEFAULT_BUNDLE_DIR) -> FastAPI:
     )
     app.state.bundle = bundle
 
+    @app.middleware("http")
+    async def observe_requests(request: Request, call_next):
+        import time
+
+        started = time.perf_counter()
+        response = await call_next(request)
+        route = request.scope.get("route")
+        route_name = getattr(route, "path", "unmatched")
+        status_code = str(response.status_code)
+        HTTP_REQUESTS.labels(route=route_name, status=status_code).inc()
+        if response.status_code >= 400:
+            HTTP_ERRORS.labels(route=route_name, status=status_code).inc()
+        HTTP_REQUEST_DURATION.labels(route=route_name).observe(time.perf_counter() - started)
+        return response
+
     @app.get("/health", response_model=HealthResponse)
     def health() -> HealthResponse:
         return HealthResponse(
@@ -122,6 +161,8 @@ def create_app(bundle_dir: Path = DEFAULT_BUNDLE_DIR) -> FastAPI:
 
     @app.post("/predict", response_model=PredictionResponse)
     def predict(features: CustomerFeatures) -> PredictionResponse:
+        import time
+
         if not bundle.loaded:
             raise HTTPException(
                 status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
@@ -129,8 +170,11 @@ def create_app(bundle_dir: Path = DEFAULT_BUNDLE_DIR) -> FastAPI:
             )
         frame = pd.DataFrame([features.model_dump()], columns=FEATURES)
         prepared = prepare_features(frame)
+        PREDICTION_REQUESTS.inc()
+        inference_started = time.perf_counter()
         prediction = int(bundle.model.predict(prepared)[0])
         probability = float(bundle.model.predict_proba(prepared)[0, 1])
+        INFERENCE_DURATION.observe(time.perf_counter() - inference_started)
         return PredictionResponse(
             prediction="Yes" if prediction == 1 else "No",
             churn_probability=probability,
@@ -150,6 +194,10 @@ def create_app(bundle_dir: Path = DEFAULT_BUNDLE_DIR) -> FastAPI:
             model_version=str(bundle.metadata["version"]),
             metadata=bundle.metadata,
         )
+
+    @app.get("/metrics")
+    def metrics() -> Response:
+        return Response(content=generate_latest(), media_type=CONTENT_TYPE_LATEST)
 
     @app.exception_handler(Exception)
     async def unexpected_error_handler(_: Request, exc: Exception):

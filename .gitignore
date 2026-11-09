@@ -19,4 +19,6 @@ reports/*
 !reports/logistic_regression/**
 !reports/random_forest/
 !reports/random_forest/**
+!reports/drift/
+!reports/drift/**
 *.egg-info/

@@ -1,0 +1,127 @@
+{
+  "reference_rows": 4225,
+  "current_rows": 4225,
+  "p_value_threshold": 0.05,
+  "drift_detected": false,
+  "drifted_features": [],
+  "feature_results": {
+    "SeniorCitizen": {
+      "test": "Kolmogorov-Smirnov",
+      "statistic": 0.002603550295858015,
+      "p_value": 0.9999999999999996,
+      "drift_detected": false
+    },
+    "tenure": {
+      "test": "Kolmogorov-Smirnov",
+      "statistic": 0.015621301775147922,
+      "p_value": 0.6811866739581235,
+      "drift_detected": false
+    },
+    "MonthlyCharges": {
+      "test": "Kolmogorov-Smirnov",
+      "statistic": 0.0132544378698225,
+      "p_value": 0.8519320123378195,
+      "drift_detected": false
+    },
+    "TotalCharges": {
+      "test": "Kolmogorov-Smirnov",
+      "statistic": 0.012565196775723098,
+      "p_value": 0.8931991002085423,
+      "drift_detected": false
+    },
+    "gender": {
+      "test": "chi-square",
+      "statistic": 0.32001211880213215,
+      "p_value": 0.5716003620888848,
+      "drift_detected": false
+    },
+    "Partner": {
+      "test": "chi-square",
+      "statistic": 0.7589967074026711,
+      "p_value": 0.3836426829630184,
+      "drift_detected": false
+    },
+    "Dependents": {
+      "test": "chi-square",
+      "statistic": 0.0817827180776706,
+      "p_value": 0.7748959068981114,
+      "drift_detected": false
+    },
+    "PhoneService": {
+      "test": "chi-square",
+      "statistic": 0.005194245575017584,
+      "p_value": 0.942545313554496,
+      "drift_detected": false
+    },
+    "MultipleLines": {
+      "test": "chi-square",
+      "statistic": 0.21083750331977189,
+      "p_value": 0.8999475891242611,
+      "drift_detected": false
+    },
+    "InternetService": {
+      "test": "chi-square",
+      "statistic": 1.2983110025363547,
+      "p_value": 0.5224868299656675,
+      "drift_detected": false
+    },
+    "OnlineSecurity": {
+      "test": "chi-square",
+      "statistic": 2.809215209308064,
+      "p_value": 0.2454633562364902,
+      "drift_detected": false
+    },
+    "OnlineBackup": {
+      "test": "chi-square",
+      "statistic": 1.1901055257051993,
+      "p_value": 0.5515334646212066,
+      "drift_detected": false
+    },
+    "DeviceProtection": {
+      "test": "chi-square",
+      "statistic": 1.1952042639757123,
+      "p_value": 0.5501291929933761,
+      "drift_detected": false
+    },
+    "TechSupport": {
+      "test": "chi-square",
+      "statistic": 1.7903203492534985,
+      "p_value": 0.40854215531256954,
+      "drift_detected": false
+    },
+    "StreamingTV": {
+      "test": "chi-square",
+      "statistic": 1.510239114436232,
+      "p_value": 0.4699544249279711,
+      "drift_detected": false
+    },
+    "StreamingMovies": {
+      "test": "chi-square",
+      "statistic": 1.2382384666871897,
+      "p_value": 0.5384184498347515,
+      "drift_detected": false
+    },
+    "Contract": {
+      "test": "chi-square",
+      "statistic": 0.08763986378571394,
+      "p_value": 0.957126289876111,
+      "drift_detected": false
+    },
+    "PaperlessBilling": {
+      "test": "chi-square",
+      "statistic": 0.004426693948217518,
+      "p_value": 0.9469531634712731,
+      "drift_detected": false
+    },
+    "PaymentMethod": {
+      "test": "chi-square",
+      "statistic": 0.8175441457944308,
+      "p_value": 0.8452662666891393,
+      "drift_detected": false
+    }
+  },
+  "scenario": "control",
+  "synthetic": false,
+  "reference_description": "Feature-only training split.",
+  "current_description": "Sampled from the same reference distribution."
+}

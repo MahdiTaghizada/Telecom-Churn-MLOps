@@ -146,7 +146,7 @@
   "selected_model": "logistic_regression",
   "registry": {
     "name": "telecom-churn-model",
-    "version": "4",
-    "run_id": "6ed835a4f5d241359dba66277fef0e92"
+    "version": "6",
+    "run_id": "cfad5d94c943406fa2a2c347a1885596"
   }
 }
